@@ -39,6 +39,7 @@
                 <div>
                     <div class="image">
                         <div class="aspect-w-4 aspect-h-3">
+                            <img src="{{ asset('storage/'. $post->image? $post->image : '') }}" alt="">
                             <img src="{{ asset('storage/' . $post->image) }}">
                         </div>
                         <label class="custom-checkbox absolute top-0 mt-2 ltr:left-0 ltr:ml-2 rtl:right-0 rtl:mr-2">

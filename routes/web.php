@@ -2,6 +2,7 @@
 
 namespace route;
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 
@@ -16,7 +17,7 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::view('/', 'dashboard')->name('Dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('Dashboard');
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostsController::class, 'index'])->name('Posts');
     // Route::view('/', 'Posts')->name('Posts');

@@ -9,7 +9,7 @@
                     <div>
                         <span class="text-primary la la-sun text-5xl leading-none"></span>
                         <p class="mt-2">Published Posts</p>
-                        <div class="text-primary mt-5 text-3xl leading-none">18</div>
+                        <div class="text-primary mt-5 text-3xl leading-none">{{ $posts }}</div>
                     </div>
                 </div>
             </a>
@@ -17,9 +17,9 @@
                 <div
                     class="card flex items-center justify-center px-4 py-8 text-center transition-transform duration-200 hover:scale-110 hover:shadow-lg lg:transform">
                     <div>
-                        <span class="text-primary la la-cloud text-5xl leading-none"></span>
-                        <p class="mt-2">Pending Posts</p>
-                        <div class="text-primary mt-5 text-3xl leading-none">16</div>
+                        <span class="text-primary la la-users text-5xl leading-none"></span>
+                        <p class="mt-2">Authors</p>
+                        <div class="text-primary mt-5 text-3xl leading-none">{{ $authors }}</div>
                     </div>
                 </div>
             </a>
