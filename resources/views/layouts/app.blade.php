@@ -7,16 +7,16 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
     <title>{{ Route::currentRouteName() }} - BisaBlog</title>
     <!-- Generics -->
-    <link href="../assets/images/favicon/favicon-32.png" rel="icon" sizes="32x32">
-    <link href="../assets/images/favicon/favicon-128.png" rel="icon" sizes="128x128">
-    <link href="../assets/images/favicon/favicon-192.png" rel="icon" sizes="192x192">
+    <link href="{{asset('assets/images/favicon/favicon-32.png')}}" rel="icon" sizes="32x32">
+    <link href="{{ asset('assets/images/favicon/favicon-128.png') }}" rel="icon" sizes="128x128">
+    <link href="{{ asset('assets/images/favicon/favicon-192.png') }}" rel="icon" sizes="192x192">
     <!-- Android -->
-    <link href="../assets/images/favicon/favicon-196.png" rel="shortcut icon" sizes="196x196">
+    <link href="{{ asset('assets/images/favicon/favicon-196.png') }}" rel="shortcut icon" sizes="196x196">
     <!-- iOS -->
-    <link href="../assets/images/favicon/favicon-152.png" rel="apple-touch-icon" sizes="152x152">
-    <link href="../assets/images/favicon/favicon-167.png" rel="apple-touch-icon" sizes="167x167">
-    <link href="../assets/images/favicon/favicon-180.png" rel="apple-touch-icon" sizes="180x180">
-    <link href="../assets/css/style.css" rel="stylesheet" />
+    <link href="{{ asset('assets/images/favicon/favicon-152.png') }}" rel="apple-touch-icon" sizes="152x152">
+    <link href="{{ asset('assets/images/favicon/favicon-167.png') }}" rel="apple-touch-icon" sizes="167x167">
+    <link href="{{ asset('assets/images/favicon/favicon-180.png') }}" rel="apple-touch-icon" sizes="180x180">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
     @yield('css')
 </head>
 
@@ -461,13 +461,14 @@
                         $segments = explode(' ', Route::currentRouteName());
                         $routeName = '';
                     @endphp
-                    {{-- @dd($sef) --}}
                     @foreach ($segments as $index => $segment)
+
                         @php
                             $routeName .= $segment;
                             $isLastSegment = $index === count($segments) - 1;
                         @endphp
-                        <li><a href="{{ route($routeName) }}">{{ $segment }}</a></li>
+                        {{-- route bug --}}
+                        <li><a href="{{ route($routeName,$segments) }}">{{ $segment }}</a></li>
                         @unless ($isLastSegment)
                             <li class="divider la la-arrow-right"></li>
                         @endunless
@@ -499,8 +500,9 @@
 
     <!-- Scripts -->
     @yield('js')
-    <script src="../assets/js/vendor.js"></script>
-    <script src="../assets/js/script.js"></script>
+    <script src="{{ asset('../assets/js/vendor.js') }}"></script>
+    <script src="{{ asset('../assets/js/script.js
+    ') }}"></script>
     @include('sweetalert::alert')
 
 
@@ -508,5 +510,4 @@
 
 
 <!-- Mirrored from yeti.yetithemes.net/demo/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 12 Aug 2023 17:02:22 GMT -->
-
 </html>
