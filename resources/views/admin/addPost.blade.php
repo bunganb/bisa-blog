@@ -11,7 +11,8 @@
                     @csrf
                     <div class="mb-5 xl:w-1/2">
                         <label class="label mb-2 block" for="title">Title</label>
-                        <input class="form-control @error('title') is-invalid @enderror" id="title" name="title">
+                        <input class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+                            value="{{ old('title') }}">
                         @error('title')
                             <small class="invalid-feedback mt-2 block">{{ $message }}</small>
                         @enderror
@@ -22,7 +23,7 @@
                             <div
                                 class="file-name input-addon input-addon-prepend input-group-item is-invalid w-full overflow-x-hidden">
                                 No file chosen</div>
-                            <input class="hidden @error('tumbnail') is-invalid @enderror" name="tumbnail" type="file">
+                            <input class="@error('tumbnail') is-invalid @enderror hidden" name="tumbnail" type="file">
                             <div class="input-group-item btn btn_primary uppercase">Choose File</div>
                         </label>
                         @error('tumbnail')
@@ -31,7 +32,8 @@
                     </div>
                     <div class="mb-5">
                         <label class="label mb-2 block" for="editor">Content</label>
-                        <textarea name="content" class="@error('content') is-invalid @enderror">
+                        <textarea class="@error('content') is-invalid @enderror" name="content">
+                            {{ old('content') }}
                         </textarea>
                         @error('content')
                             <small class="invalid-feedback mt-2 block">{{ $message }}</small>

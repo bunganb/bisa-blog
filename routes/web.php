@@ -2,6 +2,7 @@
 
 namespace route;
 
+use App\Http\Controllers\BlogsController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
@@ -26,6 +27,8 @@ Route::prefix('posts')->group(function () {
     Route::put('edit/{slug}', [PostsController::class, 'update']);
     Route::get('delete/{slug}', [PostsController::class, 'destroy']);
 });
-Route::prefix('blogs')->group(function () {
-    Route::view('/', 'blogPage.index');
+Route::prefix('blog')->group(function () {
+    Route::view('/', 'blogPage.index')->name('home');
+    Route::get('/list-blog', [BlogsController::class, 'index'])->name('list-blog');
+    Route::get('/detail-blog/{slug}', [BlogsController::class, 'blogBySlug'])->name('detail-blog');
 });

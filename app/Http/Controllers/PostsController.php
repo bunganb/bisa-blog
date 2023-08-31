@@ -13,7 +13,7 @@ class PostsController extends Controller
     public function index(Request $request)
     {
         if ($request->input('search')) {
-            $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->get();
+            $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->with('user')->get();
         } else {
             $posts = Posts::with('user')->get();
         }

@@ -8,7 +8,7 @@
 
     <link href="{{ asset('assets/images/favicon.icon') }}" rel="shortcut icon">
 
-    <title>Aeizo - Minimal Tailwind CSS 3 Template</title>
+    <title>BisaBlog - Empower Your Knowledge</title>
 
     <!-- pe-icon-7 Icons css file -->
     <link href="{{ asset('assets/css/pe-icon-7-stroke.css') }}" rel="stylesheet">
@@ -27,8 +27,8 @@
     <div class="flex flex-col">
         <nav class="border-b py-8 md:border-b-0" id="nav" role="navigation">
             <div class="md:flex-no-wrap container flex flex-wrap items-center">
-                <a class="flex" href="index.html">
-                    <i class="icofont-deer-head text-[42px] text-black"></i>
+                <a class="flex uppercase text-xl" href="{{ route('home') }}">
+                    Bisablog.
                 </a>
                 <div class="ml-auto md:hidden">
                     <button class="flex items-center rounded" onclick="menuToggle()" type="button">
@@ -40,53 +40,34 @@
                     <ul class="ml-auto mt-5 flex flex-col duration-300 ease-out sm:transition-none md:mt-0 md:flex-row"
                         id="ulMenu">
                         <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase text-blue-500 lg:px-6"
-                                href="index.html" title="Home">Home</a>
+                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'home' ? 'text-blue-500' : 'text-black/70' }} lg:px-6"
+                                href="{{ route('home') }}" title="Home">Home</a>
                         </li>
                         <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase text-black/70 hover:text-blue-500 lg:px-6"
-                                href="about.html" title="About">About</a>
+                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'about' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
+                                href="#" title="About">About</a>
                         </li>
                         <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase text-black/70 hover:text-blue-500 lg:px-6"
-                                href="service.html" title="Service">Service</a>
+                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'service' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
+                                href="#" title="Service">Service</a>
                         </li>
                         <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase text-black/70 hover:text-blue-500 lg:px-6"
-                                href="work.html" title="Work">Work</a>
+                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'work' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
+                                href="#" title="Work">Work</a>
                         </li>
                         <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase text-black/70 hover:text-blue-500 lg:px-6"
-                                href="blog.html" title="Blog">Blog</a>
+                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'list-blog' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
+                                href="{{ route('list-blog') }}" title="Blog">Blog</a>
                         </li>
                         <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase text-black/70 hover:text-blue-500 lg:px-6"
-                                href="contact.html" title="Contact">Contact</a>
+                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'contact' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
+                                href="#" title="Contact">Contact</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
-
-    <!-- Section Start -->
-    <section class="section py-14" id="home">
-        <div class="container">
-            <div class="justify-center lg:flex">
-                <div class="mx-2 lg:w-2/3">
-                    <div class="text-center">
-                        <h1
-                            class="mb-10 bg-gradient-to-l from-pink-400 to-blue-600 bg-clip-text text-4xl font-semibold leading-[50px] tracking-wide text-transparent">
-                            Aeizo Is One Of Best Web Design & Development Company
-                        </h1>
-                        <p class="text-base text-gray-400">We create digital assets and we're focused on Web
-                            Technologies and Design,
-                            based on London, United Kingdom. We build creative & professional themes.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Section End -->
     @yield('content')
     <footer class="border-t py-8">
@@ -95,7 +76,7 @@
                 <div class="w-full">
                     <div class="text-center">
                         <a class="text-6xl text-black" href="index.html"><i class="icofont-deer-head"></i></a>
-                        <h4 class="mt-2 text-lg font-bold uppercase">Aeizo</h4>
+                        <h4 class="mt-2 text-lg font-bold uppercase">BisaBlog.</h4>
 
                         <ul class="mt-8 flex justify-center gap-3">
                             <li>
@@ -123,7 +104,7 @@
                         <p class="text-muted mt-8"> ©
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Aeizo. By MyraStudio
+                            </script> BisaBlog. By s
                         </p>
 
                     </div>
