@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-<!-- Mirrored from yeti.yetithemes.net/demo/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 12 Aug 2023 17:02:22 GMT -->
-
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
@@ -30,16 +28,6 @@
 
         <!-- Brand -->
         <span class="brand">BisaBlog.</span>
-
-        <!-- Search -->
-        <form class="hidden ltr:ml-10 rtl:mr-10 md:block">
-            <label class="form-control-addon-within rounded-full">
-                <input class="form-control border-none" placeholder="Search">
-                <button
-                    class="la la-search text-xl leading-none text-gray-300 ltr:mr-4 rtl:ml-4 dark:text-gray-700"></button>
-            </label>
-        </form>
-
         <!-- Right -->
         <div class="flex items-center ltr:ml-auto rtl:mr-auto">
 
@@ -503,11 +491,8 @@
     <script src="{{ asset('../assets/js/vendor.js') }}"></script>
     <script src="{{ asset('../assets/js/script.js
     ') }}"></script>
-    @include('sweetalert::alert')
+
 
 
 </body>
-
-
-<!-- Mirrored from yeti.yetithemes.net/demo/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 12 Aug 2023 17:02:22 GMT -->
 </html>

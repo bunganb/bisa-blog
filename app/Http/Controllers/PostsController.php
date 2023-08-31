@@ -10,11 +10,14 @@ use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Posts::with('user')->get();
-
-        return view('posts', compact('posts'));
+        if ($request->input('search')) {
+            $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->get();
+        } else {
+            $posts = Posts::with('user')->get();
+        }
+        return view('admin.posts', compact('posts'));
     }
     /**
      * Store a newly created resource in storage.
@@ -39,8 +42,7 @@ class PostsController extends Controller
             ]);
         }
         return redirect()
-            ->route('Posts')
-            ->withSuccess('Post Created Successfully!');
+            ->route('Posts');
     }
     /**
      * Show the form for editing the specified resource.
@@ -48,29 +50,32 @@ class PostsController extends Controller
     public function edit($slug)
     {
         $post = Posts::where('slug', $slug)->first();
-        return view('update', compact('post'));
+        return view('admin.update', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, $slug)
     {
+        $post = Posts::where('slug', $slug)->first();
         if ($request->method() == 'PUT') {
             $validated = $request->validate([
                 'title' => 'required|max:100',
-                'tumbnail' => 'required',
+                // 'tumbnail' => 'required',
                 'content' => 'required',
             ]);
-            // if ($request->hasFile('newTumbnail')){
-
-            // }
-            $slug = Str::slug($request->title);
+            if ($request->hasFile('newTumbnail')) {
+                Storage::delete($post->image);
+                // Handle the new image upload
+                $newImage = $request->file('newTumbnail')->store('headerImages');
+                $post->image = $newImage;
+            }
             // $uniqueSlug = $slug . '-' . uniqid();
             $user = random_int(1, 2);
-            Posts::where('slug', $request->slug)->edit([
+            Posts::where('slug', $request->slug)->update([
                 'title' => $request->title,
-                'image' => $request->file('tumbnail')->store('headerImages'),
+                'image' => $post->image,
                 'content' => $request->content,
                 'user_id' => $user,
             ]);

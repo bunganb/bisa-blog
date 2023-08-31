@@ -14,6 +14,6 @@ class DashboardController extends Controller
             'posts' => Posts::count(),
             'authors' => User::count()
         ];
-        return view('dashboard', $data);
+        return view('admin.dashboard', $data);
     }
 }

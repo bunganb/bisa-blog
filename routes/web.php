@@ -20,9 +20,12 @@ use App\Http\Controllers\PostsController;
 Route::get('/', [DashboardController::class, 'index'])->name('Dashboard');
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostsController::class, 'index'])->name('Posts');
-    Route::view('addPost', 'addPost')->name('Posts Add');
-    Route::post('/store', [PostsController::class, 'store']);
+    Route::view('addPost', 'admin.addPost')->name('Posts Add');
+    Route::post('/store', [PostsController::class, 'store'])->name('store');
     Route::get('edit/{slug}', [PostsController::class, 'edit'])->name('Posts Edit');
     Route::put('edit/{slug}', [PostsController::class, 'update']);
     Route::get('delete/{slug}', [PostsController::class, 'destroy']);
+});
+Route::prefix('blogs')->group(function () {
+    Route::view('/', 'blogPage.index');
 });

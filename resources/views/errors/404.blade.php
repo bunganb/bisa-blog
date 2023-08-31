@@ -11,19 +11,19 @@
     <title>404 Error - Errors - BisaBlog</title>
 
     <!-- Generics -->
-    <link href="assets/images/favicon/favicon-32.png" rel="icon" sizes="32x32">
-    <link href="assets/images/favicon/favicon-128.png" rel="icon" sizes="128x128">
-    <link href="assets/images/favicon/favicon-192.png" rel="icon" sizes="192x192">
+    <link href="{{ asset('assets/images/favicon/favicon-32.png') }}" rel="icon" sizes="32x32">
+    <link href="{{ asset('assets/images/favicon/favicon-128.png') }}" rel="icon" sizes="128x128">
+    <link href="{{ asset('assets/images/favicon/favicon-192.png') }}" rel="icon" sizes="192x192">
 
     <!-- Android -->
-    <link href="assets/images/favicon/favicon-196.png" rel="shortcut icon" sizes="196x196">
+    <link href="{{ asset('assets/images/favicon/favicon-196.png') }}" rel="shortcut icon" sizes="196x196">
 
     <!-- iOS -->
-    <link href="assets/images/favicon/favicon-152.png" rel="apple-touch-icon" sizes="152x152">
-    <link href="assets/images/favicon/favicon-167.png" rel="apple-touch-icon" sizes="167x167">
-    <link href="assets/images/favicon/favicon-180.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="{{ asset('assets/images/favicon/favicon-152.png') }}" rel="apple-touch-icon" sizes="152x152">
+    <link href="{{ asset('assets/images/favicon/favicon-167.png') }}" rel="apple-touch-icon" sizes="167x167">
+    <link href="{{ asset('assets/images/favicon/favicon-180.png') }}" rel="apple-touch-icon" sizes="180x180">
 
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
 </head>
 
 <body>
@@ -125,8 +125,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/vendor.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="{{ asset('assets/js/vendor.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 
 </body>
 

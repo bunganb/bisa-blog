@@ -5,36 +5,42 @@
 @endsection
 @section('content')
     <div class="grid gap-5">
-        {{-- <!-- Content -->
-        <div class="lg:col-span-2 xl:col-span-3">
-            <div class="card h-1/4">
-                <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg">
-            </div>
-        </div> --}}
+        <!-- Content -->
         <div class="lg:col-span-2 xl:col-span-3">
             <div class="card p-5">
-                <form action="{{ $post->slug }}" enctype="multipart/form-data" method="POST">
+                <form action="{{ $post->slug }} " enctype="multipart/form-data" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="mb-5 xl:w-1/2">
                         <label class="label mb-2 block" for="title">Title</label>
-                        <input class="form-control" id="title" name="title" value="{{ $post->title }}">
+                        <input class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+                            value="{{ $post->title }}">
+                        @error('title')
+                            <small class="invalid-feedback mt-2 block">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="mt-5 xl:w-1/2">
                         <label class="label mb-2 block" for="tumbnail">Tumbnail</label>
-                        <label class="input-group font-normal">
+                        <img class="max-h-full max-w-full rounded-lg" src="{{ asset('storage/' . $post->image) }}">
+                        <label class="input-group mt-5 font-normal">
                             <div
                                 class="file-name input-addon input-addon-prepend input-group-item w-full overflow-x-hidden">
                                 No file chosen</div>
-                            <input class="hidden" name="newTumbnail" type="file">
+                            <input class="@error('tumbnail') is-invalid @enderror hidden" name="newTumbnail" type="file">
                             <div class="input-group-item btn btn_primary uppercase">Choose File</div>
+                            @error('tumbnail')
+                                <small class="invalid-feedback mt-2 block">{{ $message }}</small>
+                            @enderror
                         </label>
                     </div>
                     <div class="mb-5">
                         <label class="label mb-2 block" for="editor">Content</label>
-                        <textarea name="content">
+                        <textarea class="@error('tumbnail') is-invalid @enderror" name="content">
                             {{ $post->content }}
                         </textarea>
+                        @error('content')
+                            <small class="invalid-feedback mt-2 block">{{ $message }}</small>
+                        @enderror
                     </div>
                     <button class="btn btn_primary uppercase" type="submit">click</button>
                 </form>

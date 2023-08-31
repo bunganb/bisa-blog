@@ -5,16 +5,14 @@
 @section('lssa')
     <div class="mt-5 flex flex-wrap items-center gap-2 ltr:ml-auto rtl:mr-auto lg:mt-0">
         <!-- Search -->
-        <form class="flex flex-auto">
+        <form class="flex flex-auto" action="{{route('Posts')}}" method="GET">
             <label class="form-control-addon-within rounded-full">
-                <input class="form-control border-none" placeholder="Search">
+                <input class="form-control border-none" placeholder="Search" name="search">
                 <button
                     class="la la-search text-xl leading-none text-gray-300 ltr:mr-4 rtl:ml-4 dark:text-gray-700"></button>
             </label>
         </form>
-
         <div class="flex gap-x-2">
-
             <!-- Sort By -->
             <div class="dropdown">
                 <button class="btn btn_outlined btn_secondary uppercase" data-toggle="dropdown-menu">
@@ -39,16 +37,7 @@
                 <div>
                     <div class="image">
                         <div class="aspect-w-4 aspect-h-3">
-                            <img alt="" src="{{ asset('storage/' . $post->image ? $post->image : '') }}">
                             <img src="{{ asset('storage/' . $post->image) }}">
-                        </div>
-                        <label class="custom-checkbox absolute top-0 mt-2 ltr:left-0 ltr:ml-2 rtl:right-0 rtl:mr-2">
-                            <input data-toggle="cardSelection" type="checkbox">
-                            <span></span>
-                        </label>
-                        <div
-                            class="badge badge_outlined badge_secondary absolute top-0 mt-2 uppercase ltr:right-0 ltr:mr-2 rtl:left-0 rtl:ml-2">
-                            Draft
                         </div>
                     </div>
                 </div>
