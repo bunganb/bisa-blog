@@ -7,7 +7,7 @@
                     <div>
                         <h4
                             class="mb-10 bg-gradient-to-l from-pink-400 to-blue-600 bg-clip-text text-4xl font-semibold leading-[50px] tracking-wide text-transparent underline decoration-blue-400 underline-offset-4">
-                            Tips and Tricks
+                            Articels
                         </h4>
 
                         <h4 class="text-base font-light text-gray-400">Aenean sollicitudin, lorem quis bibendum auctor,
@@ -26,8 +26,8 @@
                             <!-- Post-->
                             <article>
                                 <div>
-                                    <a href="#"><img alt="" class="rounded"
-                                            src="assets/images/blog/blog-1.jpg"></a>
+                                    <a href="#"><img alt="" class="w-full rounded"
+                                            src="{{ asset('storage/' . $post->image) }}"></a>
                                 </div>
                                 <div>
                                     <h2><a
@@ -48,47 +48,14 @@
                             </article>
                             <!-- Post end-->
                         @empty
+                            <div class="no-data text-center">
+                                No Data
+                            </div>
                         @endforelse
                     </div>
                     <!-- Pagination-->
-                    <div class="mt-6 flex">
-                        <a class="items-centzer mx-1 flex cursor-not-allowed justify-center rounded border bg-white px-4 py-2 capitalize text-gray-500"
-                            href="#">
-                            <i class="icofont-rounded-left"></i>
-                        </a>
-
-                        <a class="mx-1 hidden transform rounded border bg-gray-600 px-4 py-2 text-white transition-colors duration-200 sm:inline"
-                            href="#">
-                            1
-                        </a>
-
-                        <a class="mx-1 hidden transform rounded border bg-white px-4 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-600 hover:text-white sm:inline"
-                            href="#">
-                            2
-                        </a>
-
-                        <a class="mx-1 hidden transform rounded border bg-white px-4 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-600 hover:text-white sm:inline"
-                            href="#">
-                            3
-                        </a>
-
-                        <a class="mx-1 hidden transform rounded border bg-white px-4 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-600 hover:text-white sm:inline"
-                            href="#">
-                            4
-                        </a>
-
-                        <a class="mx-1 hidden transform rounded border bg-white px-4 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-600 hover:text-white sm:inline"
-                            href="#">
-                            5
-                        </a>
-
-                        <a class="mx-1 flex transform items-center justify-center rounded border bg-white px-4 py-2 text-gray-700 transition-colors duration-200 hover:bg-gray-600 hover:text-white"
-                            href="#">
-                            <i class="icofont-rounded-right"></i>
-                        </a>
-                    </div>
+                    {{ $posts->links() }}
                     <!-- Pagination end-->
-
                 </div>
 
                 <div class="ml-0 mt-8 lg:ml-8">
@@ -97,7 +64,7 @@
                         <div class="mb-10 flex items-center border bg-transparent pr-4">
                             <!-- search input -->
                             <input class="w-full border-0 bg-transparent text-black focus:border-0 focus:ring-0"
-                                name="search" placeholder="Search" type="search" value="{{ old('search') }}">
+                                name="search" placeholder="Search" type="search" value="{{ request('search') }}">
                             <button class="text-xl text-black" type="submit">
                                 <span class="icofont-search-1"></span>
                             </button>

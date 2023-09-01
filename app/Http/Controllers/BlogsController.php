@@ -10,9 +10,9 @@ class BlogsController extends Controller
     public function index(Request $request)
     {
         if ($request->input('search')) {
-            $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->with('user')->get();
+            $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->with('user')->paginate(3);
         } else {
-            $posts = Posts::with('user')->get();
+            $posts = Posts::with('user')->paginate(3);
         }
         return view('blogPage.list-blog', compact('posts'));
     }
