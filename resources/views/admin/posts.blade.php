@@ -5,9 +5,9 @@
 @section('lssa')
     <div class="mt-5 flex flex-wrap items-center gap-2 ltr:ml-auto rtl:mr-auto lg:mt-0">
         <!-- Search -->
-        <form class="flex flex-auto" action="{{route('Posts')}}" method="GET">
+        <form action="{{ route('Posts') }}" class="flex flex-auto" method="GET">
             <label class="form-control-addon-within rounded-full">
-                <input class="form-control border-none" placeholder="Search" name="search">
+                <input class="form-control border-none" name="search" placeholder="Search">
                 <button
                     class="la la-search text-xl leading-none text-gray-300 ltr:mr-4 rtl:ml-4 dark:text-gray-700"></button>
             </label>
@@ -73,37 +73,30 @@
                 <h3 class="text-center">No Data</h3>
             </div>
         @endforelse
-
     </div>
     <div class="mt-5">
-        <!-- Pagination -->
         <div class="card lg:flex">
             <nav class="flex flex-wrap gap-2 p-5">
-                <a class="btn btn_primary" href="#no-link">First</a>
-                <a class="btn btn_primary" href="#no-link">1</a>
-                <a class="btn btn_outlined btn_secondary" href="#no-link">2</a>
-                <a class="btn btn_outlined btn_secondary" href="#no-link">3</a>
-                <a class="btn btn_outlined btn_secondary" href="#no-link">4</a>
-                <a class="btn btn_outlined btn_secondary" href="#no-link">5</a>
-                <a class="btn btn_secondary" href="#no-link">Last</a>
+                {{-- Previous Page Link --}}
+                @if ($posts->onFirstPage())
+                    <a class="btn btn_outlined btn_secondary disabled" href="#">Previous</a>
+                @else
+                    <a class="btn btn_primary" href="{{ $posts->previousPageUrl() }}">Previous</a>
+                @endif
+                {{-- Numeric Page Links --}}
+                @foreach ($posts->getUrlRange(1, $posts->lastPage()) as $page => $url)
+                    <a class="btn {{ $posts->currentPage() == $page ? ' btn_primary' : ' btn_secondary btn_outlined' }}"
+                        href="{{ $url }}">{{ $page }}</a>
+                @endforeach
+                {{-- Next Page Link --}}
+                @if ($posts->hasMorePages())
+                    <a class="btn btn_primary" href="{{ $posts->nextPageUrl() }}">Next</a>
+                @else
+                    <a class="btn btn_outlined btn_secondary disabled" href="#">Next</a>
+                @endif
             </nav>
             <div class="border-divider flex items-center border-t p-5 ltr:ml-auto rtl:mr-auto lg:border-t-0">
-                Displaying 1-5 of 100 items
-            </div>
-            <div class="border-divider flex items-center gap-2 border-t p-5 lg:border-t-0 lg:ltr:border-l lg:rtl:border-r">
-                <span>Show</span>
-                <div class="dropdown">
-                    <button class="btn btn_outlined btn_secondary" data-toggle="dropdown-menu">
-                        5
-                        <span class="la la-caret-down text-xl leading-none ltr:ml-3 rtl:mr-3"></span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="#no-link">5</a>
-                        <a href="#no-link">10</a>
-                        <a href="#no-link">15</a>
-                    </div>
-                </div>
-                <span>items</span>
+                Displaying {{ $posts->firstItem() }}-{{ $posts->lastItem() }} of {{ $posts->total() }} items
             </div>
         </div>
     </div>

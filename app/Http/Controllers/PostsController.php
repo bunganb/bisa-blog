@@ -13,9 +13,9 @@ class PostsController extends Controller
     public function index(Request $request)
     {
         if ($request->input('search')) {
-            $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->with('user')->get();
+            $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->with('user')->paginate(3);
         } else {
-            $posts = Posts::with('user')->get();
+            $posts = Posts::with('user')->paginate(3);
         }
         return view('admin.posts', compact('posts'));
     }
@@ -71,17 +71,18 @@ class PostsController extends Controller
                 $newImage = $request->file('newTumbnail')->store('headerImages');
                 $post->image = $newImage;
             }
-            // $uniqueSlug = $slug . '-' . uniqid();
+            $slug = Str::slug($request->title);
+            $uniqueSlug = $slug . '-' . uniqid();
             $user = random_int(1, 2);
             Posts::where('slug', $request->slug)->update([
                 'title' => $request->title,
+                'slug' => $uniqueSlug,
                 'image' => $post->image,
                 'content' => $request->content,
                 'user_id' => $user,
             ]);
             return redirect()
-                ->route('Posts')
-                ->withSuccess('Post Edited Successfully!');
+                ->route('Posts');
         }
     }
 

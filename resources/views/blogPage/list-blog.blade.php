@@ -57,7 +57,6 @@
                     {{ $posts->links() }}
                     <!-- Pagination end-->
                 </div>
-
                 <div class="ml-0 mt-8 lg:ml-8">
                     <!-- Search widget-->
                     <form action="{{ route('list-blog') }}" method="GET">
@@ -70,7 +69,6 @@
                             </button>
                         </div>
                     </form>
-
                     <!-- Categories widget-->
                     <aside class="mb-10">
                         <div class="text-base font-medium">Categories</div>
@@ -185,9 +183,6 @@
                     </aside>
                 </div>
             </div>
-
-
-
         </div>
     </section>
 @endsection
