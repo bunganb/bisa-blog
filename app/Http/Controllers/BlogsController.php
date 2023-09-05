@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 
 class BlogsController extends Controller
 {
-    public function index(Request $request)
+    public function index()
+    {
+        $posts = Posts::latest()->take(3)->get();
+        return view('blogPage.index', compact('posts'));
+    }
+    public function showBlog(Request $request)
     {
         if ($request->input('search')) {
             $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->with('user')->paginate(3);

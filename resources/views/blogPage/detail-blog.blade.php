@@ -20,10 +20,6 @@
         </div>
     </section>
     <!-- Section End -->
-
-
-
-
     <!-- shuffle portfolio -->
     <section class="section">
         <div class="container">

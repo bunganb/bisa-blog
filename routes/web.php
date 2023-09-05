@@ -18,7 +18,7 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index'])->name('Dashboard');
+Route::get('/admin', [DashboardController::class, 'index'])->name('Dashboard');
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostsController::class, 'index'])->name('Posts');
     Route::view('addPost', 'admin.addPost')->name('Posts Add');
@@ -28,7 +28,7 @@ Route::prefix('posts')->group(function () {
     Route::get('delete/{slug}', [PostsController::class, 'destroy']);
 });
 Route::prefix('blog')->group(function () {
-    Route::view('/', 'blogPage.index')->name('home');
-    Route::get('/list-blog', [BlogsController::class, 'index'])->name('list-blog');
+    Route::get('/', [BlogsController::class, 'index'])->name('home');
+    Route::get('/list-blog', [BlogsController::class, 'showBlog'])->name('list-blog');
     Route::get('/detail-blog/{slug}', [BlogsController::class, 'blogBySlug'])->name('detail-blog');
 });
