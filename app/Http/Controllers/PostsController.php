@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostsController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->input('search')) {
-            $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->with('user')->paginate(3);
+            $posts = Posts::search($request->input('search'));
         } else {
-            $posts = Posts::with('user')->paginate(3);
+            $posts = Posts::showPost();
         }
         return view('admin.posts', compact('posts'));
     }
@@ -36,23 +37,15 @@ class PostsController extends Controller
             Posts::create([
                 'title' => $request->title,
                 'slug' => $uniqueSlug,
-                'image' => $request->file('tumbnail')->store('headerImages'),
+                'image' => $request->file('tumbnail')->store('headerImages', 'public'),
                 'content' => $request->content,
                 'user_id' => $user,
             ]);
+            Alert::success('Success', 'Added Successfully')->persistent();
+            session()->forget('sweetalert.alert');
+            return redirect('/posts');
         }
-        return redirect()
-            ->route('Posts');
     }
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($slug)
-    {
-        $post = Posts::where('slug', $slug)->first();
-        return view('admin.update', compact('post'));
-    }
-
     /**
      * Update the specified resource in storage.
      */
@@ -60,6 +53,7 @@ class PostsController extends Controller
     {
         $post = Posts::where('slug', $slug)->first();
         if ($request->method() == 'PUT') {
+            // dd($request->all());
             $validated = $request->validate([
                 'title' => 'required|max:100',
                 // 'tumbnail' => 'required',
@@ -68,21 +62,25 @@ class PostsController extends Controller
             if ($request->hasFile('newTumbnail')) {
                 Storage::delete($post->image);
                 // Handle the new image upload
-                $newImage = $request->file('newTumbnail')->store('headerImages');
+                $newImage = $request->file('newTumbnail')->store('headerImages', 'public');
                 $post->image = $newImage;
             }
             $slug = Str::slug($request->title);
             $uniqueSlug = $slug . '-' . uniqid();
             $user = random_int(1, 2);
-            Posts::where('slug', $request->slug)->update([
+            Posts::where('slug', $post->slug)->update([
                 'title' => $request->title,
                 'slug' => $uniqueSlug,
                 'image' => $post->image,
                 'content' => $request->content,
                 'user_id' => $user,
             ]);
-            return redirect()
-                ->route('Posts');
+            // $post->refresh();
+            Alert::success('Success', 'Updated Successfully')->persistent();
+            session()->forget('sweetalert.alert');
+            return redirect('/posts');
+        } elseif ($request->method() == 'GET') {
+            return view('admin.update', compact('post'));
         }
     }
 
@@ -96,8 +94,8 @@ class PostsController extends Controller
             Storage::delete($post->image);
         }
         $post->delete();
-        return redirect()
-            ->route('Posts')
-            ->withSuccess('Post Deleted Successfully!');
+        Alert::success('Success', 'Post Deleted Successfully')->persistent(false);
+        session()->forget('sweetalert');
+        return redirect('/posts');
     }
 }

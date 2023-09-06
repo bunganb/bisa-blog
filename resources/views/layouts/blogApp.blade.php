@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -27,7 +28,7 @@
     <div class="flex flex-col">
         <nav class="border-b py-8 md:border-b-0" id="nav" role="navigation">
             <div class="md:flex-no-wrap container flex flex-wrap items-center">
-                <a class="flex uppercase text-xl" href="{{ route('home') }}">
+                <a class="flex text-xl uppercase" href="{{ route('home') }}">
                     Bisablog.
                 </a>
                 <div class="ml-auto md:hidden">
@@ -40,28 +41,16 @@
                     <ul class="ml-auto mt-5 flex flex-col duration-300 ease-out sm:transition-none md:mt-0 md:flex-row"
                         id="ulMenu">
                         <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'home' ? 'text-blue-500' : 'text-black/70' }} lg:px-6"
+                            <a class="font-secondary {{ Route::currentRouteName() == 'home' ? 'text-blue-500' : 'text-black/70' }} block p-3 text-sm font-medium uppercase lg:px-6"
                                 href="{{ route('home') }}" title="Home">Home</a>
                         </li>
                         <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'about' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
-                                href="#" title="About">About</a>
+                            <a class="font-secondary {{ Route::currentRouteName() == 'about' ? 'text-blue-500' : 'text-black/70' }} block p-3 text-sm font-medium uppercase hover:text-blue-500 lg:px-6"
+                                href="{{ route('about') }}" title="About">About</a>
                         </li>
                         <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'service' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
-                                href="#" title="Service">Service</a>
-                        </li>
-                        <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'work' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
-                                href="#" title="Work">Work</a>
-                        </li>
-                        <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'list-blog' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
+                            <a class="font-secondary {{ Route::currentRouteName() == 'list-blog' ? 'text-blue-500' : 'text-black/70' }} block p-3 text-sm font-medium uppercase hover:text-blue-500 lg:px-6"
                                 href="{{ route('list-blog') }}" title="Blog">Blog</a>
-                        </li>
-                        <li>
-                            <a class="font-secondary block p-3 text-sm font-medium uppercase {{ Route::currentRouteName() == 'contact' ? 'text-blue-500' : 'text-black/70' }} hover:text-blue-500 lg:px-6"
-                                href="#" title="Contact">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -124,4 +113,5 @@
 
 
 </body>
+
 </html>

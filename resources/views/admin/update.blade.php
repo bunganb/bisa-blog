@@ -8,7 +8,7 @@
         <!-- Content -->
         <div class="lg:col-span-2 xl:col-span-3">
             <div class="card p-5">
-                <form action="{{ $post->slug }} " enctype="multipart/form-data" method="POST">
+                <form action="" enctype="multipart/form-data" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="mb-5 xl:w-1/2">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Posts;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BlogsController extends Controller
@@ -15,9 +16,9 @@ class BlogsController extends Controller
     public function showBlog(Request $request)
     {
         if ($request->input('search')) {
-            $posts = Posts::where('title', 'like', '%' . $request->input('search') . '%')->with('user')->paginate(3);
+            $posts = Posts::search($request->input('search'));
         } else {
-            $posts = Posts::with('user')->paginate(3);
+            $posts = Posts::showPost();
         }
         return view('blogPage.list-blog', compact('posts'));
     }
@@ -25,5 +26,10 @@ class BlogsController extends Controller
     {
         $post = Posts::where('slug', $slug)->first();
         return view('blogPage.detail-blog', compact('post'));
+    }
+    public function about()
+    {
+        $users = User::get();
+        return view('blogPage.about', compact('users'));
     }
 }

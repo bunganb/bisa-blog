@@ -18,17 +18,19 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::get('/admin', [DashboardController::class, 'index'])->name('Dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('Dashboard');
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostsController::class, 'index'])->name('Posts');
     Route::view('addPost', 'admin.addPost')->name('Posts Add');
     Route::post('/store', [PostsController::class, 'store'])->name('store');
-    Route::get('edit/{slug}', [PostsController::class, 'edit'])->name('Posts Edit');
-    Route::put('edit/{slug}', [PostsController::class, 'update']);
+    Route::match(['get', 'put'], 'edit/{slug}', [PostsController::class, 'update'])->name('Posts Edit');
+    // Route::get('edit/{slug}', [PostsController::class, 'edit'])->name('Posts Edit');
+    // Route::put('edit/{slug}', [PostsController::class, 'update']);
     Route::get('delete/{slug}', [PostsController::class, 'destroy']);
 });
 Route::prefix('blog')->group(function () {
     Route::get('/', [BlogsController::class, 'index'])->name('home');
+    Route::get('/about', [BlogsController::class, 'about'])->name('about');
     Route::get('/list-blog', [BlogsController::class, 'showBlog'])->name('list-blog');
     Route::get('/detail-blog/{slug}', [BlogsController::class, 'blogBySlug'])->name('detail-blog');
 });

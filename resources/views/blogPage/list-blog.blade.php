@@ -26,8 +26,8 @@
                             <!-- Post-->
                             <article>
                                 <div>
-                                    <a href="#"><img alt="" class="w-full rounded"
-                                            src="{{ asset('storage/' . $post->image) }}"></a>
+                                    <a href="{{ route('detail-blog', ['slug' => $post->slug]) }}"><img alt=""
+                                            class="w-full rounded" src="{{ asset('storage/' . $post->image) }}"></a>
                                 </div>
                                 <div>
                                     <h2><a
@@ -69,118 +69,6 @@
                             </button>
                         </div>
                     </form>
-                    <!-- Categories widget-->
-                    <aside class="mb-10">
-                        <div class="text-base font-medium">Categories</div>
-                        <div class="relative my-5 flex items-center">
-                            <div class="absolute h-px w-full rounded-l-full bg-gray-200"></div>
-                            <div class="absolute h-px w-8 rounded-full bg-blue-700"></div>
-                        </div>
-                        <div class="space-y-5">
-                            <div><a href="#">Journey</a> (40)</div>
-                            <div><a href="#">Photography</a> (08)</div>
-                            <div><a href="#">Lifestyle</a> (11)</div>
-                            <div><a href="#">Food &amp; Drinks</a> (21)</div>
-                        </div>
-                    </aside>
-
-                    <!-- Recent entries widget-->
-                    <aside class="mb-10">
-                        <div class="text-base font-medium">Popular Posts</div>
-                        <div class="relative my-5 flex items-center">
-                            <div class="absolute h-px w-full rounded-l-full bg-gray-200"></div>
-                            <div class="absolute h-px w-8 rounded-full bg-blue-700"></div>
-                        </div>
-                        <div>
-                            <div class="mb-4 flex border-b pb-4">
-                                <div class="w-16">
-                                    <a href="#"><img alt="" src="assets/images/works/img10.jpg"></a>
-                                </div>
-                                <div class="ml-4 mt-0.5">
-                                    <a href="#">Beautiful Day With Friends..</a>
-                                    <span>Feb 15, 2020</span>
-                                </div>
-                            </div>
-
-                            <div class="mb-4 flex border-b pb-4">
-                                <div class="w-16">
-                                    <a href="#"><img alt="" src="assets/images/works/img2.jpg"></a>
-                                </div>
-                                <div class="ml-4 mt-0.5">
-                                    <a href="#">Nature valley with cooling..</a>
-                                    <span>Feb 10, 2020</span>
-                                </div>
-                            </div>
-
-                            <div class="flex">
-                                <div class="w-16">
-                                    <a href="#"><img alt="" src="assets/images/works/img3.jpg"></a>
-                                </div>
-                                <div class="ml-4 mt-0.5">
-                                    <a href="#">15 Best Healthy and Easy Salad..</a>
-                                    <span>Feb 8, 2020</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-
-                    <!-- Text widget-->
-                    <aside class="mb-10">
-                        <div class="text-base font-medium">Text Widget</div>
-                        <div class="relative my-5 flex items-center">
-                            <div class="absolute h-px w-full rounded-l-full bg-gray-200"></div>
-                            <div class="absolute h-px w-8 rounded-full bg-blue-700"></div>
-                        </div>
-
-                        <p class="text-muted text-widget-des">Exercitation photo booth stumptown tote bag Banksy,
-                            elit small
-                            batch
-                            freegan sed. Craft beer elit seitan exercitation, photo booth et 8-bit kale chips
-                            proident chillwave
-                            deep v laborum. Aliquip veniam delectus, Marfa eiusmod Pinterest in do umami readymade
-                            swag. </p>
-
-                    </aside>
-
-                    <!-- Archives widget-->
-                    <aside class="mb-10">
-                        <div class="text-base font-medium">Archives</div>
-                        <div class="relative my-5 flex items-center">
-                            <div class="absolute h-px w-full rounded-l-full bg-gray-200"></div>
-                            <div class="absolute h-px w-8 rounded-full bg-blue-700"></div>
-                        </div>
-
-                        <div class="space-y-5">
-                            <div><a href="#">March 2020</a> (40)</div>
-                            <div><a href="#">April 2020</a> (08)</div>
-                            <div><a href="#">May 2020</a> (11)</div>
-                            <div><a href="#">Feb 2020</a> (21)</div>
-                        </div>
-
-                    </aside>
-
-                    <!-- Tags widget-->
-                    <aside class="mb-10">
-                        <div class="text-base font-medium">Tags</div>
-                        <div class="relative my-5 flex items-center">
-                            <div class="absolute h-px w-full rounded-l-full bg-gray-200"></div>
-                            <div class="absolute h-px w-8 rounded-full bg-blue-700"></div>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <a class="rounded-sm bg-gray-100 px-2 py-1.5 text-[10px] uppercase hover:bg-blue-500 hover:text-white"
-                                href="#">logo</a>
-                            <a class="rounded-sm bg-gray-100 px-2 py-1.5 text-[10px] uppercase hover:bg-blue-500 hover:text-white"
-                                href="#">business</a>
-                            <a class="rounded-sm bg-gray-100 px-2 py-1.5 text-[10px] uppercase hover:bg-blue-500 hover:text-white"
-                                href="#">corporate</a>
-                            <a class="rounded-sm bg-gray-100 px-2 py-1.5 text-[10px] uppercase hover:bg-blue-500 hover:text-white"
-                                href="#">e-commerce</a>
-                            <a class="rounded-sm bg-gray-100 px-2 py-1.5 text-[10px] uppercase hover:bg-blue-500 hover:text-white"
-                                href="#">agency</a>
-                            <a class="rounded-sm bg-gray-100 px-2 py-1.5 text-[10px] uppercase hover:bg-blue-500 hover:text-white"
-                                href="#">responsive</a>
-                        </div>
-                    </aside>
                 </div>
             </div>
         </div>

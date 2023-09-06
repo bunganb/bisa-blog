@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
     <title>{{ Route::currentRouteName() }} - BisaBlog</title>
     <!-- Generics -->
-    <link href="{{asset('assets/images/favicon/favicon-32.png')}}" rel="icon" sizes="32x32">
+    <link href="{{ asset('assets/images/favicon/favicon-32.png') }}" rel="icon" sizes="32x32">
     <link href="{{ asset('assets/images/favicon/favicon-128.png') }}" rel="icon" sizes="128x128">
     <link href="{{ asset('assets/images/favicon/favicon-192.png') }}" rel="icon" sizes="192x192">
     <!-- Android -->
@@ -19,7 +20,7 @@
 </head>
 
 <body>
-
+    @include('sweetalert::alert')
     <!-- Top Bar -->
     <header class="top-bar">
 
@@ -40,83 +41,11 @@
             <!-- Fullscreen -->
             <button class="la la-expand-arrows-alt hidden px-2 text-2xl leading-none ltr:ml-3 rtl:mr-3 lg:inline-block"
                 data-tippy-content="Fullscreen" data-toggle="tooltip" id="fullScreenToggler"></button>
-
-            <!-- Apps -->
-            <div class="dropdown self-stretch">
-                <button
-                    class="la la-box flex h-full items-center px-2 text-2xl leading-none ltr:ml-4 rtl:mr-4 lg:ltr:ml-1 lg:rtl:mr-1"
-                    data-tippy-arrow="true" data-tippy-placement="bottom" data-toggle="custom-dropdown-menu">
-                </button>
-                <div class="custom-dropdown-menu p-5 text-center">
-                    <div class="flex justify-around">
-                        <a class="text-normal hover:text-primary p-5" href="#no-link">
-                            <span class="la la-cog block text-5xl leading-none"></span>
-                            <span>Settings</span>
-                        </a>
-                        <a class="text-normal hover:text-primary p-5" href="#no-link">
-                            <span class="la la-users block text-5xl leading-none"></span>
-                            <span>Users</span>
-                        </a>
-                    </div>
-                    <div class="flex justify-around">
-                        <a class="text-normal hover:text-primary p-5" href="#no-link">
-                            <span class="la la-book block text-5xl leading-none"></span>
-                            <span>Docs</span>
-                        </a>
-                        <a class="text-normal hover:text-primary p-5" href="#no-link">
-                            <span class="la la-dollar block text-5xl leading-none"></span>
-                            <span>Shop</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Notifications -->
-            <div class="dropdown self-stretch">
-                <button
-                    class="la la-bell relative flex h-full items-center px-2 text-2xl leading-none ltr:ml-1 rtl:mr-1"
-                    data-tippy-arrow="true" data-tippy-placement="bottom-end" data-toggle="custom-dropdown-menu">
-                    <span
-                        class="border-primary font-body text-primary absolute right-0 top-0 -mr-1 -mt-1 rounded-full border px-2 text-xs leading-tight">3</span>
-                </button>
-                <div class="custom-dropdown-menu">
-                    <div class="flex items-center px-5 py-2">
-                        <h5 class="mb-0 uppercase">Notifications</h5>
-                        <button class="btn btn_outlined btn_warning uppercase ltr:ml-auto rtl:mr-auto">Clear
-                            All</button>
-                    </div>
-                    <hr>
-                    <div class="hover:bg-primary p-5 hover:bg-opacity-5">
-                        <a href="#no-link">
-                            <h6 class="uppercase">Heading One</h6>
-                        </a>
-                        <p>Lorem ipsum dolor, sit amet consectetur.</p>
-                        <small>Today</small>
-                    </div>
-                    <hr>
-                    <div class="hover:bg-primary p-5 hover:bg-opacity-5">
-                        <a href="#no-link">
-                            <h6 class="uppercase">Heading Two</h6>
-                        </a>
-                        <p>Mollitia sequi dolor architecto aut deserunt.</p>
-                        <small>Yesterday</small>
-                    </div>
-                    <hr>
-                    <div class="hover:bg-primary p-5 hover:bg-opacity-5">
-                        <a href="#no-link">
-                            <h6 class="uppercase">Heading Three</h6>
-                        </a>
-                        <p>Nobis reprehenderit sed quos deserunt</p>
-                        <small>Last Week</small>
-                    </div>
-                </div>
-            </div>
-
             <!-- User Menu -->
             <div class="dropdown">
                 <button class="flex items-center ltr:ml-4 rtl:mr-4" data-tippy-arrow="true"
                     data-tippy-placement="bottom-end" data-toggle="custom-dropdown-menu">
-                    <span class="avatar">JD</span>
+                    <span class="avatar">BN</span>
                 </button>
                 <div class="custom-dropdown-menu w-64">
                     <div class="p-5">
@@ -159,11 +88,13 @@
                 </a>
                 <hr class="mx-8 my-4">
             </div>
-            <a class="link" data-tippy-content="Dashboard" data-toggle="tooltip-menu" href="{{ route('Dashboard') }}">
+            <a class="link" data-tippy-content="Dashboard" data-toggle="tooltip-menu"
+                href="{{ route('Dashboard') }}">
                 <span class="icon la la-laptop"></span>
                 <span class="title">Dashboard</span>
             </a>
-            <a class="link" data-tippy-content="Blank Page" data-toggle="tooltip-menu" href="{{ route('Posts') }}">
+            <a class="link" data-tippy-content="Blank Page" data-toggle="tooltip-menu"
+                href="{{ route('Posts') }}">
                 <span class="icon la la-newspaper"></span>
                 <span class="title">Blog Posts</span>
             </a>
@@ -189,13 +120,12 @@
                         $routeName = '';
                     @endphp
                     @foreach ($segments as $index => $segment)
-
                         @php
                             $routeName .= $segment;
                             $isLastSegment = $index === count($segments) - 1;
                         @endphp
                         {{-- route bug --}}
-                        <li><a href="{{ route($routeName,$segments) }}">{{ $segment }}</a></li>
+                        <li><a href="{{ route($routeName, $segments) }}">{{ $segment }}</a></li>
                         @unless ($isLastSegment)
                             <li class="divider la la-arrow-right"></li>
                         @endunless
@@ -229,9 +159,10 @@
     @yield('js')
     <script src="{{ asset('../assets/js/vendor.js') }}"></script>
     <script src="{{ asset('../assets/js/script.js
-    ') }}"></script>
+        ') }}"></script>
+    <script>
 
-
-
+    </script>
 </body>
+
 </html>

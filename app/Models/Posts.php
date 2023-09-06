@@ -17,8 +17,16 @@ class Posts extends Model
         'image',
         'user_id',
     ];
+    public static function showPost()
+    {
+        return self::with('user')->paginate(3);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public static function search($input)
+    {
+        return self::where('title', 'LIKE', '%' . $input . '%')->with('user')->paginate(3);
     }
 }

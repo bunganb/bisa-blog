@@ -7,7 +7,7 @@
         <!-- Search -->
         <form action="{{ route('Posts') }}" class="flex flex-auto" method="GET">
             <label class="form-control-addon-within rounded-full">
-                <input class="form-control border-none" name="search" placeholder="Search">
+                <input class="form-control border-none" name="search" placeholder="Search" value="{{ request('search') }}">
                 <button
                     class="la la-search text-xl leading-none text-gray-300 ltr:mr-4 rtl:ml-4 dark:text-gray-700"></button>
             </label>
@@ -54,7 +54,7 @@
                 <div class="actions">
                     <div class="dropdown ltr:-ml-3 rtl:-mr-3 lg:ltr:ml-auto lg:rtl:mr-auto">
                         <a class="btn btn-icon btn_outlined btn_secondary mt-auto ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
-                            href="#">
+                            href="{{ route('detail-blog', ['slug' => $post->slug]) }}" target="_blank">
                             <span class="la la-eye"></span>
                         </a>
                     </div>
