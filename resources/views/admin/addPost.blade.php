@@ -12,7 +12,7 @@
                     <div class="mb-5 xl:w-1/2">
                         <label class="label mb-2 block" for="title">Title</label>
                         <input class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                            value="{{ old('title') }}">
+                            value="{{ old('title') }}" autofocus>
                         @error('title')
                             <small class="invalid-feedback mt-2 block">{{ $message }}</small>
                         @enderror

@@ -16,11 +16,12 @@
     <link href="{{ asset('assets/images/favicon/favicon-167.png') }}" rel="apple-touch-icon" sizes="167x167">
     <link href="{{ asset('assets/images/favicon/favicon-180.png') }}" rel="apple-touch-icon" sizes="180x180">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     @yield('css')
 </head>
 
 <body>
-    @include('sweetalert::alert')
     <!-- Top Bar -->
     <header class="top-bar">
 
@@ -88,13 +89,11 @@
                 </a>
                 <hr class="mx-8 my-4">
             </div>
-            <a class="link" data-tippy-content="Dashboard" data-toggle="tooltip-menu"
-                href="{{ route('Dashboard') }}">
+            <a class="link" data-tippy-content="Dashboard" data-toggle="tooltip-menu" href="{{ route('Dashboard') }}">
                 <span class="icon la la-laptop"></span>
                 <span class="title">Dashboard</span>
             </a>
-            <a class="link" data-tippy-content="Blank Page" data-toggle="tooltip-menu"
-                href="{{ route('Posts') }}">
+            <a class="link" data-tippy-content="Blank Page" data-toggle="tooltip-menu" href="{{ route('Posts') }}">
                 <span class="icon la la-newspaper"></span>
                 <span class="title">Blog Posts</span>
             </a>
@@ -157,12 +156,11 @@
 
     <!-- Scripts -->
     @yield('js')
+    @include('sweetalert::alert')
     <script src="{{ asset('../assets/js/vendor.js') }}"></script>
     <script src="{{ asset('../assets/js/script.js
-        ') }}"></script>
-    <script>
-
-    </script>
+                                                ') }}"></script>
+    <script></script>
 </body>
 
 </html>

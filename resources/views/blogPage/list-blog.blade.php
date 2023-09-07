@@ -27,7 +27,8 @@
                             <article>
                                 <div>
                                     <a href="{{ route('detail-blog', ['slug' => $post->slug]) }}"><img alt=""
-                                            class="w-full rounded" src="{{ asset('storage/' . $post->image) }}"></a>
+                                            class="rounded" src="{{ asset('storage/' . $post->image) }}"
+                                            style="width: 100%; max-height: 400px; object-fit:cover"></a>
                                 </div>
                                 <div>
                                     <h2><a
@@ -49,7 +50,8 @@
                             <!-- Post end-->
                         @empty
                             <div class="no-data text-center">
-                                No Data
+                                <img alt="" src="{{ asset('assets/images/notfound.png') }}">
+                                <h3>No Data</h3>
                             </div>
                         @endforelse
                     </div>

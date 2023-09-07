@@ -28,7 +28,7 @@ class PostsController extends Controller
         if ($request->method() === 'POST') {
             $validated = $request->validate([
                 'title' => 'required|max:100',
-                'tumbnail' => 'required',
+                'tumbnail' => 'required|mimes:jpeg,png,jpg',
                 'content' => 'required',
             ]);
             $slug = Str::slug($request->title);
@@ -41,9 +41,12 @@ class PostsController extends Controller
                 'content' => $request->content,
                 'user_id' => $user,
             ]);
-            Alert::success('Success', 'Added Successfully')->persistent();
-            session()->forget('sweetalert.alert');
-            return redirect('/posts');
+            toast('New Post has been added successfully!', 'success')
+                ->position('top-right')
+                ->autoClose(5000)
+                ->timerProgressBar();
+
+            return to_route('Posts');
         }
     }
     /**
@@ -51,36 +54,42 @@ class PostsController extends Controller
      */
     public function update(Request $request, $slug)
     {
+        // dd($request->session());
         $post = Posts::where('slug', $slug)->first();
-        if ($request->method() == 'PUT') {
-            // dd($request->all());
-            $validated = $request->validate([
-                'title' => 'required|max:100',
-                // 'tumbnail' => 'required',
-                'content' => 'required',
-            ]);
-            if ($request->hasFile('newTumbnail')) {
-                Storage::delete($post->image);
-                // Handle the new image upload
-                $newImage = $request->file('newTumbnail')->store('headerImages', 'public');
-                $post->image = $newImage;
+        if (!$post) {
+            return view('errors.404');
+        } else {
+            if ($request->method() == 'PUT') {
+                $validated = $request->validate([
+                    'title' => 'required|max:100',
+                    'tumbnail' => 'mimes:jpeg,png,jpg',
+                    'content' => 'required',
+                ]);
+                if ($request->hasFile('newTumbnail')) {
+                    Storage::delete('public/' . $post->image);
+                    // Handle the new image upload
+                    $newImage = $request->file('newTumbnail')->store('headerImages', 'public');
+                    $post->image = $newImage;
+                }
+                $slug = Str::slug($request->title);
+                $uniqueSlug = $slug . '-' . uniqid();
+                $user = random_int(1, 2);
+                Posts::where('slug', $post->slug)->update([
+                    'title' => $request->title,
+                    'slug' => $uniqueSlug,
+                    'image' => $post->image,
+                    'content' => $request->content,
+                    'user_id' => $user,
+                ]);
+                // $post->refresh();
+                toast('New Post has been Updated successfully!', 'success')
+                    ->position('top-right')
+                    ->autoClose(5000)
+                    ->timerProgressBar();
+                return to_route('Posts');
+            } elseif ($request->method() == 'GET') {
+                return view('admin.update', compact('post'));
             }
-            $slug = Str::slug($request->title);
-            $uniqueSlug = $slug . '-' . uniqid();
-            $user = random_int(1, 2);
-            Posts::where('slug', $post->slug)->update([
-                'title' => $request->title,
-                'slug' => $uniqueSlug,
-                'image' => $post->image,
-                'content' => $request->content,
-                'user_id' => $user,
-            ]);
-            // $post->refresh();
-            Alert::success('Success', 'Updated Successfully')->persistent();
-            session()->forget('sweetalert.alert');
-            return redirect('/posts');
-        } elseif ($request->method() == 'GET') {
-            return view('admin.update', compact('post'));
         }
     }
 
@@ -90,12 +99,15 @@ class PostsController extends Controller
     public function destroy($slug)
     {
         $post = Posts::where('slug', $slug)->first();
+        // dd($post->image);
         if ($post->image) {
-            Storage::delete($post->image);
+            Storage::delete('public/' . $post->image);
         }
         $post->delete();
-        Alert::success('Success', 'Post Deleted Successfully')->persistent(false);
-        session()->forget('sweetalert');
-        return redirect('/posts');
+        toast('Post has been Deleted successfully!', 'success')
+            ->position('top-right')
+            ->autoClose(5000)
+            ->timerProgressBar();
+        return to_route('Posts');
     }
 }

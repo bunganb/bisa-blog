@@ -107,11 +107,8 @@
     <!-- Shuffle JS -->
     <script src="{{ asset('assets/js/shuffle.min.js') }}"></script>
     <script src="{{ asset('assets/js/gallery.js') }}"></script>
-
     <!-- App js -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
-
-
 </body>
 
 </html>

@@ -36,7 +36,7 @@
                 <h1 class="text-9xl font-bold">404</h1>
                 <h2 class="text-primary mt-5">Page Not Found</h2>
                 <h5 class="mt-2">The page you are looking for is not found.</h5>
-                <a class="btn btn_primary mt-5" href="{{ route('Dashboard') }}">Go Back</a>
+                <a class="btn btn_primary mt-5 cursor-pointer"  onclick="history.back()">Go Back</a>
             </div>
         </div>
     </div>

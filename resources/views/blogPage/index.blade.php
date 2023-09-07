@@ -25,7 +25,7 @@
                 @forelse ($posts as $post)
                     <div class="rounded border">
                         <div class="p-5">
-                            <img class="h-1/2 w-full object-cover" src="{{ asset('storage/' . $post->image) }}">
+                            <img src="{{ asset('storage/' . $post->image) }}" style="width: 100%; max-height: 200px; object-fit:cover">
                             <h4 class="my-3 text-base uppercase">{{ $post->title }}</h4>
                             <p class="text-muted mb-4">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
                                 dolore eu fugiat nulla pariatur. Excepteur sint occaecat.</p>

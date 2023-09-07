@@ -63,7 +63,7 @@
                         <span class="la la-pen-fancy"></span>
                     </a>
                     <a class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:mt-2 lg:ltr:ml-0 lg:rtl:mr-0"
-                        href="/posts/delete/{{ $post->slug }}">
+                        href="{{ route('delete', $post->slug) }}" id="btn-delete">
                         <span class="la la-trash-alt"></span>
                     </a>
                 </div>
@@ -100,4 +100,26 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script>
+        // delete confirm
+        $(document).on('click', '#btn-delete', function(e) {
+            e.preventDefault();
+            var link = $(this).attr('href');
+            Swal.fire({
+                title: 'Do You Want To delete This Data?',
+                text: 'Confirm Delete data ',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location = link;
+                }
+            });
+        });
+    </script>
 @endsection

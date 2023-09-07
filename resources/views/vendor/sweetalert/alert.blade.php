@@ -1,6 +1,6 @@
 @if (Session::has('alert.config') || Session::has('alert.delete'))
     @if (config('sweetalert.animation.enable'))
-        <link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
+        <link href="{{ config('sweetalert.animatecss') }}" rel="stylesheet">
     @endif
 
     @if (config('sweetalert.theme') != 'default')

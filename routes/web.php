@@ -24,9 +24,7 @@ Route::prefix('posts')->group(function () {
     Route::view('addPost', 'admin.addPost')->name('Posts Add');
     Route::post('/store', [PostsController::class, 'store'])->name('store');
     Route::match(['get', 'put'], 'edit/{slug}', [PostsController::class, 'update'])->name('Posts Edit');
-    // Route::get('edit/{slug}', [PostsController::class, 'edit'])->name('Posts Edit');
-    // Route::put('edit/{slug}', [PostsController::class, 'update']);
-    Route::get('delete/{slug}', [PostsController::class, 'destroy']);
+    Route::get('delete/{slug}', [PostsController::class, 'destroy'])->name('delete');
 });
 Route::prefix('blog')->group(function () {
     Route::get('/', [BlogsController::class, 'index'])->name('home');
