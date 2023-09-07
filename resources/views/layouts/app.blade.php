@@ -81,9 +81,9 @@
         <div class="menu-items">
             <div class="menu-header hidden">
                 <a class="mx-8 mt-8 flex items-center" href="#">
-                    <span class="avatar h-16 w-16">JD</span>
+                    <span class="avatar h-16 w-16">NB</span>
                     <div class="ltr:ml-4 ltr:text-left rtl:mr-4 rtl:text-right">
-                        <h5>John Doe</h5>
+                        <h5>Bunga Nabila</h5>
                         <p class="mt-2">Editor</p>
                     </div>
                 </a>

@@ -54,7 +54,6 @@ class PostsController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        // dd($request->session());
         $post = Posts::where('slug', $slug)->first();
         if (!$post) {
             return view('errors.404');

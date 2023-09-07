@@ -43,7 +43,7 @@
                 </div>
                 <div class="header">
                     <h5>{{ $post->title }}</h5>
-                    <p>{!! Str::limit(strip_tags($post->content), $limit = 100, $end = '...') !!} </p>
+                    <p>{!! Str::limit(strip_tags($post->content), $limit = 60, $end = '...') !!} </p>
                 </div>
                 <div class="body">
                     <h6 class="uppercase">Author</h6>
