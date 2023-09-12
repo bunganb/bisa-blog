@@ -21,8 +21,7 @@ use App\Http\Controllers\PostsController;
 Route::get('/', [DashboardController::class, 'index'])->name('Dashboard');
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostsController::class, 'index'])->name('Posts');
-    Route::view('addPost', 'admin.addPost')->name('Posts Add');
-    Route::post('/store', [PostsController::class, 'store'])->name('store');
+    Route::match(['get', 'post'], '/store', [PostsController::class, 'store'])->name('store');
     Route::match(['get', 'put'], 'edit/{slug}', [PostsController::class, 'update'])->name('Posts Edit');
     Route::get('delete/{slug}', [PostsController::class, 'destroy'])->name('delete');
 });

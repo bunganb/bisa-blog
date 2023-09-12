@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use RealRashid\SweetAlert\Facades\Alert;
+use PhpParser\Node\Stmt\Return_;
 
 class PostsController extends Controller
 {
@@ -33,7 +33,7 @@ class PostsController extends Controller
             ]);
             $slug = Str::slug($request->title);
             $uniqueSlug = $slug . '-' . uniqid();
-            $user = random_int(1, 2);
+            $user = random_int(1, 4);
             Posts::create([
                 'title' => $request->title,
                 'slug' => $uniqueSlug,
@@ -43,10 +43,11 @@ class PostsController extends Controller
             ]);
             toast('New Post has been added successfully!', 'success')
                 ->position('top-right')
-                ->autoClose(5000)
+                ->autoClose(3000)
                 ->timerProgressBar();
-
-            return to_route('Posts');
+            return redirect()->route('Posts');
+        } elseif ($request->method() == 'GET') {
+            return view('admin.addPost');
         }
     }
     /**
@@ -72,21 +73,20 @@ class PostsController extends Controller
                 }
                 $slug = Str::slug($request->title);
                 $uniqueSlug = $slug . '-' . uniqid();
-                $user = random_int(1, 2);
                 Posts::where('slug', $post->slug)->update([
                     'title' => $request->title,
                     'slug' => $uniqueSlug,
                     'image' => $post->image,
                     'content' => $request->content,
-                    'user_id' => $user,
                 ]);
                 // $post->refresh();
                 toast('New Post has been Updated successfully!', 'success')
                     ->position('top-right')
-                    ->autoClose(5000)
+                    ->autoClose(3000)
                     ->timerProgressBar();
-                return to_route('Posts');
+                return redirect('/posts');
             } elseif ($request->method() == 'GET') {
+                session()->forget('alert');
                 return view('admin.update', compact('post'));
             }
         }
@@ -105,7 +105,7 @@ class PostsController extends Controller
         $post->delete();
         toast('Post has been Deleted successfully!', 'success')
             ->position('top-right')
-            ->autoClose(5000)
+            ->autoClose(3000)
             ->timerProgressBar();
         return to_route('Posts');
     }

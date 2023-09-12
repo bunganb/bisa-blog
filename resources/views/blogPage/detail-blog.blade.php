@@ -3,6 +3,12 @@
     <!-- Section Start -->
     <section class="section py-14" id="home">
         <div class="container">
+            <div class="back text-lg text-bold">
+                <button onclick="history.back()">
+                    <i class="icofont-rounded-left"></i>
+                    back
+                </button>
+            </div>
             <div class="justify-center lg:flex">
                 <div class="mx-2 lg:w-2/3">
                     <div class="text-center">
@@ -25,7 +31,7 @@
         <div class="container">
             <div class="flex justify-center">
                 <div class="w-full">
-                    <img alt="tumbnail" class="h-1/2 w-full rounded border bg-gray-50 p-1"
+                    <img alt="tumbnail" class="rounded border bg-gray-50 p-1" style="width: 100%; height: 500px; object-fit:cover;"
                         src="{{ asset('storage/' . $post->image) }}">
                 </div>
                 <!--end /div-->

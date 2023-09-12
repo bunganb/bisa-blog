@@ -5,9 +5,14 @@
 @endsection
 @section('content')
     <div class="grid gap-5">
+        <a class="back text-bold card label p-3 text-left text-lg" href="{{ route('Posts') }}" style="color: inherit">
+            <i class="la la-angle-left"></i>
+            back
+        </a>
         <!-- Content -->
         <div class="lg:col-span-2 xl:col-span-3">
-                <img alt="" class="rounded-lg shadow" src="{{ asset('storage/' . $post->image) }}" style="width: 100%; max-height: 200px; object-fit:cover">
+            <img alt="" class="rounded-lg shadow" src="{{ asset('storage/' . $post->image) }}"
+                style="width: 100%; max-height: 200px; object-fit:cover">
         </div>
         <div class="lg:col-span-2 xl:col-span-3">
             <div class="card p-5">
@@ -28,7 +33,8 @@
                             <div
                                 class="file-name input-addon input-addon-prepend input-group-item w-full overflow-x-hidden">
                                 No file chosen</div>
-                            <input class="@error('tumbnail') is-invalid @enderror hidden" name="newTumbnail" type="file" id="uploadImage">
+                            <input class="@error('tumbnail') is-invalid @enderror hidden" id="uploadImage"
+                                name="newTumbnail" type="file">
                             <div class="input-group-item btn btn_primary uppercase">Choose File</div>
                             @error('tumbnail')
                                 <small class="invalid-feedback mt-2 block">{{ $message }}</small>
@@ -44,7 +50,7 @@
                             <small class="invalid-feedback mt-2 block">{{ $message }}</small>
                         @enderror
                     </div>
-                    <button class="btn btn_primary uppercase" id="btn-update" type="submit">click</button>
+                    <button class="btn btn_primary uppercase" id="btn-update" type="submit">Update</button>
                 </form>
             </div>
         </div>
@@ -81,8 +87,8 @@
         });
         // image
         const image = document.querySelector('img');
-        input =document.getElementById('uploadImage');
-        input.addEventListener('change',function(){
+        input = document.getElementById('uploadImage');
+        input.addEventListener('change', function() {
             image.src = URL.createObjectURL(input.files[0]);
         });
     </script>

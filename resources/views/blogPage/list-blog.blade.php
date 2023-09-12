@@ -10,11 +10,12 @@
                             Articels
                         </h4>
 
-                        <h4 class="text-base font-light text-gray-400">Aenean sollicitudin, lorem quis bibendum auctor,
-                            nisi elit consequat ipsum, nec
-                            sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin,
-                            adipisicing elit sed lorem
-                            quis bibendum auctor.</h4>
+                        <h4 class="text-base font-light text-gray-400"> <span class="text-lg font-bold">BisaBlog</span> adalah
+                            sumber artikel
+                            berkualitas tentang
+                            beragam topik. Dari ilmu pengetahuan hingga gaya hidup, kami berkomitmen memberikan wawasan yang
+                            berharga. Temukan informasi yang Anda butuhkan dan jelajahi dunia melalui tulisan-tulisan kami.
+                            Baca, pelajari, dan temukan hal-hal baru di <span class="text-lg font-bold">BisaBlog</span>!</h4>
                     </div>
                 </div>
             </div>
@@ -71,6 +72,9 @@
                             </button>
                         </div>
                     </form>
+                    @if ($search)
+                        <p>Hasil Pencarian untuk "{{ $search }}"</p>
+                    @endif
                 </div>
             </div>
         </div>

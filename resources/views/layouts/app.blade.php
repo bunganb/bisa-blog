@@ -158,9 +158,31 @@
     @yield('js')
     @include('sweetalert::alert')
     <script src="{{ asset('../assets/js/vendor.js') }}"></script>
-    <script src="{{ asset('../assets/js/script.js
-                                                ') }}"></script>
-    <script></script>
+    <script
+        src="{{ asset('../assets/js/script.js
+                                                                                                                                                                                    ') }}">
+    </script>
+    {{-- @if (session()->has('alert'))
+        <script>
+            let alertMessage = @json(session('alert'));
+            if (alertMessage) {
+                Swal.fire({
+                    title: 'Alert!',
+                    text: alertMessage,
+                    icon: 'success',
+                    position: 'top-right',
+                    timer: 5000, // Display for 5 seconds
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    willClose: function() {
+                        // Clear the session flash data when the toast is closed
+                        @php session()->forget('alert') @endphp
+                    }
+                });
+            }
+        </script>
+    @endif --}}
+
 </body>
 
 </html>

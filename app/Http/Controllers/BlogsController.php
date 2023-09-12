@@ -10,7 +10,9 @@ class BlogsController extends Controller
 {
     public function index()
     {
-        $posts = Posts::latest()->take(3)->get();
+        $posts = Posts::latest()
+            ->take(3)
+            ->get();
         return view('blogPage.index', compact('posts'));
     }
     public function showBlog(Request $request)
@@ -20,12 +22,20 @@ class BlogsController extends Controller
         } else {
             $posts = Posts::showPost();
         }
-        return view('blogPage.list-blog', compact('posts'));
+        $data = [
+            'posts' => $posts,
+            'search' => $request->input('search'),
+        ];
+        return view('blogPage.list-blog', $data);
     }
     public function blogBySlug($slug)
     {
         $post = Posts::where('slug', $slug)->first();
-        return view('blogPage.detail-blog', compact('post'));
+        if (!$post) {
+            return view('errors.404');
+        } else {
+            return view('blogPage.detail-blog', compact('post'));
+        }
     }
     public function about()
     {

@@ -13,20 +13,8 @@
             </label>
         </form>
         <div class="flex gap-x-2">
-            <!-- Sort By -->
-            <div class="dropdown">
-                <button class="btn btn_outlined btn_secondary uppercase" data-toggle="dropdown-menu">
-                    Sort By
-                    <span class="la la-caret-down text-xl leading-none ltr:ml-3 rtl:mr-3"></span>
-                </button>
-                <div class="dropdown-menu">
-                    <a href="#no-link">Ascending</a>
-                    <a href="#no-link">Descending</a>
-                </div>
-            </div>
-
             <!-- Add New -->
-            <a class="btn btn_primary uppercase" href="posts/addPost"><i class="las la-plus"></i>&nbsp;Add New</a>
+            <a class="btn btn_primary uppercase" href="{{ route('store') }}"><i class="las la-plus"></i>&nbsp;Add New</a>
         </div>
     </div>
 @endsection
@@ -59,7 +47,7 @@
                         </a>
                     </div>
                     <a class="btn btn-icon btn_outlined btn_secondary mt-auto ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
-                        href="/posts/edit/{{ $post->slug }}">
+                        href="{{ route('Posts Edit', ['slug' => $post->slug]) }}">
                         <span class="la la-pen-fancy"></span>
                     </a>
                     <a class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:mt-2 lg:ltr:ml-0 lg:rtl:mr-0"
